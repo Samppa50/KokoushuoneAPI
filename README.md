@@ -6,6 +6,7 @@ A simple Flask API for managing conference room reservations.
 
 - Create reservations for conference rooms
 - List all reservations
+- Get reservations for a specific room
 - Delete reservations
 - Validation: No overlapping reservations, no past reservations, start before end
 - Data stored in memory (not persistent across restarts)
@@ -45,6 +46,21 @@ The API will start on `http://127.0.0.1:5000/`
 ### Get All Reservations
 - **GET** `/reservations`
 - **Response**: Array of reservations
+  ```json
+  [
+    {
+      "id": 1,
+      "room": "Room A",
+      "start_time": "2026-01-20T10:00:00",
+      "end_time": "2026-01-20T11:00:00",
+      "user": "John Doe"
+    }
+  ]
+  ```
+
+### Get Reservations for a Specific Room
+- **GET** `/reservations/<room_name>`
+- **Response**: Array of reservations for the specified room
   ```json
   [
     {

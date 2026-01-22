@@ -7,3 +7,5 @@ please store data in memory and delete sql database
 ## Promptit ensimmäisen commitin jälkeen.
 
 I want a function with a GET method that shows rooms reservations by room name
+
+add documentation for getting reservations for a spesified room into readme.
