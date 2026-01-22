@@ -78,6 +78,8 @@ def get_reservations_by_name(room_name):
                 'end_time': r['end_time'].isoformat(),
                 'user': r['user']
             })
+        else:
+            return jsonify({'error': 'No reservations found for the specified room'}), 404
     return jsonify(result)
 
 @app.route('/reservations/<int:id>', methods=['DELETE'])
