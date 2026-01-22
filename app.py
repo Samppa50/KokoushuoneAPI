@@ -52,9 +52,14 @@ def create_reservation():
     
     return jsonify({'id': reservation['id'], 'message': 'Reservation created successfully'}), 201
 
+
 @app.route('/reservations', methods=['GET'])
 def get_reservations():
     result = []
+
+    if not reservations:
+        return jsonify({'error': 'No reservations found'}), 404
+    
     for r in reservations:
         result.append({
             'id': r['id'],
@@ -82,6 +87,7 @@ def get_reservations_by_name(room_name):
             return jsonify({'error': 'No reservations found for the specified room'}), 404
     return jsonify(result)
 
+
 @app.route('/reservations/<int:id>', methods=['DELETE'])
 def delete_reservation(id):
     global reservations
@@ -90,6 +96,7 @@ def delete_reservation(id):
             reservations.pop(i)
             return jsonify({'message': 'Reservation deleted successfully'}), 200
     return jsonify({'error': 'Reservation not found'}), 404
+
 
 if __name__ == '__main__':
     app.run(debug=True)
