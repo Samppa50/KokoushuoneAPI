@@ -65,6 +65,21 @@ def get_reservations():
         })
     return jsonify(result)
 
+
+@app.route('/reservations/<room_name>', methods=['GET'])
+def get_reservations_by_name(room_name):
+    result = []
+    for r in reservations:
+        if r['room'] == room_name:
+            result.append({
+                'id': r['id'],
+                'room': r['room'],
+                'start_time': r['start_time'].isoformat(),
+                'end_time': r['end_time'].isoformat(),
+                'user': r['user']
+            })
+    return jsonify(result)
+
 @app.route('/reservations/<int:id>', methods=['DELETE'])
 def delete_reservation(id):
     global reservations
